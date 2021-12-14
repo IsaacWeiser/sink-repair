@@ -1,3 +1,7 @@
+import { render } from "./main.js";
+
+const mainContainer = document.querySelector("#container")
+
 const applicationState = {
     requests: []
 }
@@ -29,6 +33,23 @@ export const sendRequest = (userServiceRequest) => {
     return fetch(`${API}/requests`, fetchOptions)
         .then(response => response.json())
         .then(() => {
-
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+            
         })
+}
+
+mainContainer.addEventListener(
+    "stateChanged",
+    customEvent => {
+        render()
+    }
+)
+
+export const deleteRequest = (id) => {
+    return fetch(`${API}/requests/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
 }

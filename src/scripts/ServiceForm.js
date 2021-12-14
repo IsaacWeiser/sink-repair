@@ -1,3 +1,5 @@
+import { sendRequest } from "./dataAccess.js"
+
 
 export const ServiceForm = () => {
     let html = `
@@ -25,7 +27,7 @@ export const ServiceForm = () => {
 }
 
 
-const mainContainer = document.querySelector("#container")
+ const mainContainer = document.querySelector("#container")
 
 mainContainer.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "submitRequest") {
