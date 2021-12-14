@@ -4,7 +4,7 @@ import { fetchRquests } from "./dataAccess.js"
 
 const mainContainer = document.querySelector("#container")
 
-const render = () => {
+export const render = () => {
     fetchRquests().then(()=> {
        return mainContainer.innerHTML = SinkRepair()
     })  
