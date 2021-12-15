@@ -1,5 +1,6 @@
 import { getRequests, deleteRequest } from "./dataAccess.js"
 
+//this function parses through the requests and converts them into li elements
 export const Requests = () => {
     const requests = getRequests();
 
@@ -16,7 +17,6 @@ export const Requests = () => {
 `
         }
     }
-
     let html = `
         <ul>
             ${
@@ -24,12 +24,13 @@ export const Requests = () => {
             }
         </ul>
     `
-
     return html
 }
 
+
 const mainContainer = document.querySelector("#container")
 
+//deletes a request by referencing the object id when you click delete
 mainContainer.addEventListener("click", click => {
     if (click.target.id.startsWith("request--")) {
         const [,requestId] = click.target.id.split("--")

@@ -2,12 +2,15 @@ import { render } from "./main.js";
 
 const mainContainer = document.querySelector("#container")
 
+//transient state
 const applicationState = {
     requests: []
 }
 
 const API = "http://localhost:8088";
 
+
+//reads from db and places them in trans state
 export const fetchRquests = () => {
     return fetch(`${API}/requests`).then(
         response => response.json()
@@ -16,11 +19,13 @@ export const fetchRquests = () => {
             serviceRequests =>  applicationState.requests = serviceRequests)
 }
 
+
+//takes the trans state array and makes a copy
 export const getRequests = () => {
     return applicationState.requests.map(req => ({...req}));
 }
 
-
+//sends a create rquest to server and makes a new event
 export const sendRequest = (userServiceRequest) => {
     const fetchOptions = {
         method: "POST",
@@ -38,12 +43,14 @@ export const sendRequest = (userServiceRequest) => {
         })
 }
 
+
 mainContainer.addEventListener(
     "stateChanged",
     customEvent => {
         render()
     }
 )
+
 
 export const deleteRequest = (id) => {
     return fetch(`${API}/requests/${id}`, { method: "DELETE" })

@@ -1,6 +1,6 @@
 import { sendRequest } from "./dataAccess.js"
 
-
+//takes input and sets up the ux of the form
 export const ServiceForm = () => {
     let html = `
     <div class="field">
@@ -22,13 +22,14 @@ export const ServiceForm = () => {
 
         <button class="button" id="submitRequest">Submit Request</button>
     `
-
     return html
 }
 
 
  const mainContainer = document.querySelector("#container")
 
+ //when submit is clicked it takes the values input and stores them in an 
+ //object and sends them to the db to be added
 mainContainer.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "submitRequest") {
         // Get what the user typed into the form fields
